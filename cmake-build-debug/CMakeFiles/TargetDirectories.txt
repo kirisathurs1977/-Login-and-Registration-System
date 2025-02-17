@@ -1,0 +1,3 @@
+D:/Personal/C++/Projects/Login and Registration System/cmake-build-debug/CMakeFiles/Login_and_Registration_System.dir
+D:/Personal/C++/Projects/Login and Registration System/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Personal/C++/Projects/Login and Registration System/cmake-build-debug/CMakeFiles/rebuild_cache.dir
