@@ -1,25 +1,69 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+using namespace std;
+
+// Function to register a user
+void registerUser() {
+    string username, password;
+    cout << "Enter a new username: ";
+    cin >> username;
+    cout << "Enter a password: ";
+    cin >> password;
+
+    // Check if user already exists
+    ifstream read("users.txt");
+    string u, p;
+    while (read >> u >> p) {
+        if (u == username) {
+            cout << "Username already exists! Try again.\n";
+            return;
+        }
+    }
+    read.close();
+
+    // Store user credentials in file
+    ofstream file("users.txt", ios::app);
+    file << username << " " << password << endl;
+    file.close();
+    cout << "Registration successful!\n";
+}
+
+// Function to login
+bool loginUser() {
+    string username, password, u, p;
+    cout << "Enter username: ";
+    cin >> username;
+    cout << "Enter password: ";
+    cin >> password;
+
+    ifstream file("users.txt");
+    while (file >> u >> p) {
+        if (u == username && p == password) {
+            cout << "Login successful!\n";
+            return true;
+        }
+    }
+    cout << "Invalid username or password.\n";
+    return false;
+}
+
 int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the
-    // <b>lang</b> variable name to see how CLion can help you rename it.
-    auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+    int choice;
+    cout << "1. Register\n2. Login\nEnter your choice: ";
+    cin >> choice;
 
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code.
-        // We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/>
-        // breakpoint for you, but you can always add more by pressing
-        // <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
+    switch (choice) {
+        case 1:
+            registerUser();
+        break;
+        case 2:
+            loginUser();
+        break;
+        default:
+            cout << "Invalid choice!\n";
     }
 
     return 0;
 }
-
-// TIP See CLion help at <a
-// href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>.
-//  Also, you can try interactive lessons for CLion by selecting
-//  'Help | Learn IDE Features' from the main menu.
