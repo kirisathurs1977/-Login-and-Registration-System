@@ -5,6 +5,9 @@
 using namespace std;
 
 // Function to register a user
+void forgot(){
+
+}
 void registerUser() {
     string username, password;
     cout << "Enter a new username: ";
